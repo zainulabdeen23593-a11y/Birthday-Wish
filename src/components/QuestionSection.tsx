@@ -32,7 +32,7 @@ export const QuestionSection: React.FC<QuestionSectionProps> = ({
           <div className="absolute -inset-4 bg-gradient-to-tr from-pink-300/35 to-rose-300/35 rounded-full blur-2xl group-hover:scale-110 transition-all duration-500 -z-10 animate-pulse" />
           <div className="w-32 h-32 rounded-full border-4 border-pink-300 overflow-hidden bg-white shadow-lg flex items-center justify-center p-1.5 relative z-10">
             <img 
-              src="/8022105582831715.gif" 
+              src="/question-sticker.gif" 
               className="w-full h-full object-cover rounded-full"
               referrerPolicy="no-referrer"
               alt="Cute interactive question sticker"
@@ -78,7 +78,7 @@ export const QuestionSection: React.FC<QuestionSectionProps> = ({
             <div className="absolute -inset-3 bg-gradient-to-tr from-rose-400/20 to-pink-400/20 rounded-full blur-xl -z-10 animate-pulse" />
             <div className="w-32 h-32 rounded-full border-4 border-rose-300 overflow-hidden bg-white shadow-lg flex items-center justify-center p-1.5">
               <img 
-                src="/302796774970461460 (1).gif" 
+                src="/pouting-sticker.gif" 
                 className="w-full h-full object-cover rounded-full"
                 referrerPolicy="no-referrer"
                 alt="Cute pouting love in anger style sticker"
