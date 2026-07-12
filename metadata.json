@@ -1,0 +1,6 @@
+{
+  "name": "Sincere Birthday Wish",
+  "description": "An interactive, elegant, and mobile-friendly celebration website that transitions into a sincere, personal apology, featuring high-quality CSS animations, particles, and music.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
