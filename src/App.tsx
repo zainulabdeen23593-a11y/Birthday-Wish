@@ -39,7 +39,7 @@ export default function App() {
   
   // Custom GIF background path with offline fallback error handling
   const [peachGomaSrc, setPeachGomaSrc] = useState(
-    "/Peach Peach And Goma Sticker - Peach Peach and goma Peach flower - GIF \u3092\u898b\u3064\u3051\u3066\u5171\u6709\u3059\u308b.gif"
+    "/peach-goma.gif"
   );
 
   const handlePeachGomaError = useCallback(() => {
