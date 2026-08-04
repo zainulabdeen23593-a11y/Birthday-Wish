@@ -17,12 +17,14 @@ export const CakeSection: React.FC<CakeSectionProps> = ({
   blowAllCandles,
 }) => {
   return (
-    <div id="section-cake" className="flex-1 flex flex-col justify-between py-6 items-center text-center animate-fade-slide-up">
+    <div id="section-cake" className="flex-1 flex flex-col justify-between py-6 items-center text-center animate-fade-slide-up relative">
+      <img src="/spider-web.svg" alt="web" className="absolute top-3 left-3 w-20 h-20 opacity-8 pointer-events-none" />
+      <img src="/rose.svg" alt="rose" className="absolute bottom-6 right-6 w-14 h-14 opacity-95 pointer-events-none" />
       
       {/* Title instructions */}
       <div className="space-y-2 pt-2">
-        <h2 className="font-serif-elegant text-2xl text-rose-700 text-glow-rose font-semibold">Make a wish... 🎂</h2>
-        <p className="text-xs text-rose-950 font-medium max-w-xs mx-auto px-4">
+        <h2 className="font-display text-2xl text-[var(--spider-red)] font-semibold">Make a wish...</h2>
+        <p className="text-xs font-script text-[var(--spider-blue)] font-medium max-w-xs mx-auto px-4">
           Tap individual candles or use the button below to blow them out
         </p>
       </div>
@@ -31,7 +33,7 @@ export const CakeSection: React.FC<CakeSectionProps> = ({
       <div className="flex-1 flex flex-col justify-center items-center w-full relative h-72">
         
         {/* Outer soft aura behind cake */}
-        <div className="absolute w-56 h-56 bg-pink-300/20 rounded-full blur-3xl -z-10" />
+        <div className="absolute w-56 h-56 rounded-full blur-3xl -z-10" style={{ backgroundColor: 'rgba(246,202,202,0.2)' }} />
 
         {/* Interactive Candles Area */}
         <div className="flex justify-center gap-5 items-end mb-1 z-10">
@@ -138,14 +140,15 @@ export const CakeSection: React.FC<CakeSectionProps> = ({
           type="button"
           onClick={blowAllCandles}
           disabled={candles.every(c => !c.lit)}
-          className="w-full py-4 bg-gradient-to-r from-pink-50 via-rose-500 to-rose-400 hover:from-pink-600 hover:to-rose-500 text-white font-medium rounded-xl shadow-lg hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:scale-100 disabled:pointer-events-none transition-all cursor-pointer border-2 border-pink-100 focus:outline-none focus:ring-2 focus:ring-pink-300"
+          style={{ background: 'linear-gradient(90deg, var(--spider-red), var(--accent-pink))', color: '#fff' }}
+          className="w-full py-4 font-medium rounded-xl shadow-lg hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:scale-100 disabled:pointer-events-none transition-all cursor-pointer border-2 border-[var(--accent-pink)] focus:outline-none"
         >
-          Blow out all candles 💨
+          Blow out all candles
         </button>
         
         {candles.every(c => !c.lit) && (
-          <p className="text-xs text-rose-700 font-semibold animate-pulse mt-2">
-            ✨ Wish received. Connecting...
+          <p className="text-xs text-[var(--spider-red)] font-semibold animate-pulse mt-2">
+            Wish received. Connecting...
           </p>
         )}
       </div>

@@ -24,7 +24,9 @@ export const QuestionSection: React.FC<QuestionSectionProps> = ({
   onYes,
 }) => {
   return (
-    <div id="section-question" className="flex-1 flex flex-col justify-between py-10 items-center text-center animate-fade-slide-up">
+    <div id="section-question" className="flex-1 flex flex-col justify-between py-10 items-center text-center animate-fade-slide-up relative">
+      <img src="/spider-web.svg" alt="web" className="absolute top-3 left-3 w-20 h-20 opacity-8 pointer-events-none" />
+      <img src="/rose.svg" alt="rose" className="absolute bottom-6 right-6 w-14 h-14 opacity-95 pointer-events-none" />
       <div className="flex-1 flex flex-col items-center justify-center gap-8">
         {/* Cute interactive question sticker gif container */}
         <div className="relative group select-none transition-all duration-300 hover:scale-105 ease-out animate-float">
@@ -41,30 +43,31 @@ export const QuestionSection: React.FC<QuestionSectionProps> = ({
         </div>
 
         <div className="space-y-4 px-4">
-          <h2 className="font-serif-elegant text-2xl md:text-3xl text-rose-700 text-glow-rose font-semibold">
+          <h2 className="font-display text-2xl md:text-3xl text-[var(--spider-red)] font-semibold">
             I made something special for you...
           </h2>
-          <p className="text-lg text-pink-600 font-script text-4xl font-semibold">
-            Do you want to see it? 👉👈
+          <p className="text-lg font-script text-[var(--spider-blue)] font-semibold">
+            Do you want to see it?
           </p>
         </div>
       </div>
 
       <div className="w-full flex items-center justify-center gap-4 px-4 min-h-[96px]">
         <div style={{ transform: `scale(${yesScale})` }} className="transition-all duration-300 origin-center">
-          <button
+            <button
             type="button"
             onClick={onYes}
-            className="py-3 px-6 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white rounded-xl font-semibold shadow-lg hover:scale-105 active:scale-95 transition-all cursor-pointer border-2 border-pink-100 whitespace-nowrap"
+            style={{ background: 'linear-gradient(90deg, var(--spider-red), var(--accent-pink))', color: '#fff' }}
+            className="py-3 px-6 rounded-xl font-semibold shadow-lg hover:scale-105 active:scale-95 transition-all cursor-pointer border-2 border-[var(--accent-pink)] whitespace-nowrap"
           >
             YES! 🥰
           </button>
         </div>
         <div style={{ transform: `scale(${noScale})` }} className="transition-all duration-300 origin-center">
-          <button
+            <button
             type="button"
             onClick={handleNoClick}
-            className="py-3 px-6 bg-white border-2 border-pink-200 text-rose-700 hover:bg-pink-50 hover:text-rose-900 rounded-xl font-semibold transition-all active:scale-95 cursor-pointer shadow-sm whitespace-nowrap"
+            className="py-3 px-6 bg-white border-2 border-[var(--accent-pink)] text-[var(--spider-blue)] hover:bg-[var(--accent-pink)/8] hover:text-[var(--spider-red)] rounded-xl font-semibold transition-all active:scale-95 cursor-pointer shadow-sm whitespace-nowrap"
           >
             NO 😢
           </button>

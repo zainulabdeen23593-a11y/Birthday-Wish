@@ -30,6 +30,8 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
 }) => {
   return (
     <div id="section-gallery" className="flex-1 flex flex-col justify-between py-6 animate-fade-slide-up relative">
+      <img src="/spider-web.svg" alt="web" className="absolute top-3 left-3 w-20 h-20 opacity-8 pointer-events-none" />
+      <img src="/rose.svg" alt="rose" className="absolute bottom-6 right-6 w-14 h-14 opacity-95 pointer-events-none" />
       
       {/* SVG Definitions for Heart Clip Path */}
       <svg className="absolute w-0 h-0" width="0" height="0" aria-hidden="true">
@@ -48,7 +50,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
           {/* Left wavy path */}
           <path 
             d="M 10 160 C 45 130, 35 180, 80 145 C 95 130, 85 165, 110 150" 
-            stroke="#f43f5e" 
+            stroke="var(--spider-red)" 
             strokeWidth="2" 
             strokeLinecap="round" 
             strokeLinejoin="round"
@@ -57,7 +59,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
           {/* Right wavy path */}
           <path 
             d="M 310 160 C 275 130, 285 180, 240 145 C 225 130, 235 165, 210 150" 
-            stroke="#f43f5e" 
+            stroke="var(--spider-red)" 
             strokeWidth="2" 
             strokeLinecap="round" 
             strokeLinejoin="round"
@@ -67,23 +69,23 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
           {/* Hand-drawn sparkles/stars around the heart */}
           <path 
             d="M 45 65 Q 48 58 53 63 Q 58 58 61 65 Q 53 75 45 65 Z" 
-            stroke="#fda4af" 
+            stroke="var(--accent-pink)" 
             strokeWidth="1.5" 
-            fill="#ffe4e6" 
-            className="opacity-80 rotate-[-15deg] transform origin-center animate-pulse"
+            fill="var(--accent-pink)" 
+            className="opacity-30 rotate-[-15deg] transform origin-center animate-pulse"
           />
           <path 
             d="M 265 60 Q 268 53 273 58 Q 278 53 281 60 Q 273 70 265 60 Z" 
-            stroke="#fda4af" 
+            stroke="var(--accent-pink)" 
             strokeWidth="1.5" 
-            fill="#ffe4e6" 
-            className="opacity-80 rotate-[15deg] transform origin-center animate-pulse"
+            fill="var(--accent-pink)" 
+            className="opacity-30 rotate-[15deg] transform origin-center animate-pulse"
           />
         </svg>
 
         {/* Animated Headline text "Would you be mine?" */}
         <div className="text-center z-20 mb-6 animate-headline-arrive">
-          <span className="font-script text-[32px] font-extrabold text-rose-600 drop-shadow-[0_2px_4px_rgba(255,255,255,0.9)] select-none block animate-breathe-slow leading-tight">
+          <span className="font-display text-[32px] font-extrabold text-[var(--spider-red)] select-none block animate-breathe-slow leading-tight">
             Would you be mine?
           </span>
         </div>
@@ -159,7 +161,8 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
         {/* Heart-Shaped Interactive Full View Modal Overlay */}
         {activeHeartPhoto && (
           <div 
-            className="fixed inset-0 z-50 flex flex-col items-center justify-center p-4 bg-rose-950/80 backdrop-blur-md animate-fade-in cursor-pointer"
+            className="fixed inset-0 z-50 flex flex-col items-center justify-center p-4 backdrop-blur-md animate-fade-in cursor-pointer"
+            style={{ backgroundColor: 'rgba(27,27,117,0.8)' }}
             onClick={() => setActiveHeartPhoto(null)}
           >
             {/* Outer scaling-up container */}
@@ -185,8 +188,8 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
             </div>
 
             {/* Elegant Close Hint */}
-            <div className="mt-6 text-white/95 font-serif-elegant text-sm text-center select-none bg-rose-500/35 border border-white/20 px-5 py-2.5 rounded-full shadow-lg backdrop-blur-md animate-bounce cursor-pointer hover:bg-rose-500/50 transition-colors">
-              Tap anywhere to close ✨
+            <div className="mt-6 text-white/95 font-display text-sm text-center select-none px-5 py-2.5 rounded-full shadow-lg animate-bounce cursor-pointer transition-colors">
+              Tap anywhere to close
             </div>
           </div>
         )}

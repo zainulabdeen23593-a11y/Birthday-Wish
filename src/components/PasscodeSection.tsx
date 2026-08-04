@@ -42,8 +42,8 @@ export const PasscodeSection: React.FC<PasscodeSectionProps> = ({
               isCatWiggling ? "animate-cat-wiggle" : "animate-cat-tilt"
             }`}
           >
-            {/* Dashed hand-drawn effect pink circle around the cat */}
-            <div className="absolute inset-0 rounded-full border-2 border-dashed border-pink-300 animate-[spin_40s_linear_infinite]" />
+            {/* Dashed hand-drawn effect accent circle around the cat */}
+            <div className="absolute inset-0 rounded-full border-2 border-dashed" style={{ borderColor: 'var(--accent-pink)' }} />
             
             {/* Cute Bows on ears */}
             <div className="absolute top-1 left-2 text-2xl z-20 animate-bounce select-none">🎀</div>
@@ -83,12 +83,12 @@ export const PasscodeSection: React.FC<PasscodeSectionProps> = ({
             </div>
           </div>
           {/* Soft pulsing shadow beneath cat */}
-          <div className="w-16 h-2 bg-pink-300/35 rounded-full blur-[2px] mx-auto -mt-1.5 animate-shadow-pulse" />
+          <div className="w-16 h-2 bg-[var(--accent-pink)]/35 rounded-full blur-[2px] mx-auto -mt-1.5 animate-shadow-pulse" />
         </div>
         
         <div className="text-center">
-          <h2 className="text-rose-800 text-lg font-medium tracking-wide">Enter a passcode</h2>
-          <p className="text-xs text-rose-500/70 font-medium">Hint: March 2023</p>
+          <h2 className="text-[var(--spider-blue)] text-lg font-medium tracking-wide">Enter a passcode</h2>
+          <p className="text-xs text-[var(--accent-pink)/70] font-medium">Hint: Think of May 23 — the journey continues from 4 years, to death.</p>
         </div>
       </div>
 
@@ -111,22 +111,26 @@ export const PasscodeSection: React.FC<PasscodeSectionProps> = ({
       </div>
 
       {/* Delete / Backspace utility bar */}
-      <div className="flex justify-between items-center px-16 mt-3 text-xs text-rose-500 font-medium">
+      <div className="flex justify-between items-center px-16 mt-3 text-xs text-[var(--spider-blue)] font-medium">
         <button 
           type="button"
           onClick={() => setTypedCode("")}
-          className="hover:text-rose-700 transition-colors py-1 cursor-pointer focus:outline-none focus:underline"
+          className="hover:text-[var(--spider-red)] transition-colors py-1 cursor-pointer focus:outline-none focus:underline"
         >
           CLEAR
         </button>
         <button 
           type="button"
           onClick={handleBackspace}
-          className="hover:text-rose-700 transition-colors py-1 flex items-center gap-1 cursor-pointer focus:outline-none focus:underline"
+          className="hover:text-[var(--spider-red)] transition-colors py-1 flex items-center gap-1 cursor-pointer focus:outline-none focus:underline"
         >
           DELETE
         </button>
       </div>
+
+      {/* decorative overlays */}
+      <img src="/spider-web.svg" alt="web" className="absolute top-3 right-3 w-20 h-20 opacity-8 pointer-events-none" />
+      <img src="/daisy.svg" alt="daisy" className="absolute bottom-6 left-4 w-12 h-12 opacity-95 pointer-events-none" />
 
       {/* WRONG PASSCODE OVERLAY */}
       {isPasscodeWrong && (

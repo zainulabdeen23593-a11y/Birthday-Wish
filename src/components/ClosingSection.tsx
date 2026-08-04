@@ -34,50 +34,56 @@ export const ClosingSection: React.FC<ClosingSectionProps> = ({
     <div id="section-closing" className="flex-1 flex flex-col justify-between py-6 items-center text-center animate-fade-slide-up relative overflow-hidden h-full min-h-[500px]">
       
       {/* Tap-to-spawn hearts in this section too */}
-      <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
-        {homeHearts.map(h => (
-          <span 
-            key={h.id}
-            className="absolute animate-float-up-fade text-glow-rose select-none"
-            style={{
-              left: `${h.x}%`,
-              top: `${h.y}%`,
-              transform: `scale(${h.scale}) rotate(${h.rot}deg)`,
-            }}
-          >
-            {h.emoji}
-          </span>
-        ))}
-      </div>
+      {/* hearts only on non-final slides */}
+      {currentStoryIndex < storyParagraphs.length - 1 && (
+        <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
+          {homeHearts.map(h => (
+            <span 
+              key={h.id}
+              className="absolute animate-float-up-fade text-glow-rose select-none"
+              style={{
+                left: `${h.x}%`,
+                top: `${h.y}%`,
+                transform: `scale(${h.scale}) rotate(${h.rot}deg)`,
+              }}
+            >
+              {h.emoji}
+            </span>
+          ))}
+        </div>
+      )}
 
       {/* Ambient drifting background decor */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        {[
-          { id: 101, left: "10%", delay: "0s", dur: "8s", emoji: "🌸" },
-          { id: 102, left: "90%", delay: "2s", dur: "9s", emoji: "💖" },
-          { id: 103, left: "30%", delay: "4s", dur: "7s", emoji: "✨" },
-          { id: 104, left: "70%", delay: "1s", dur: "10s", emoji: "🌸" },
-        ].map(item => (
-          <div 
-            key={item.id}
-            className="absolute animate-float opacity-30 text-glow-rose select-none"
-            style={{
-              left: item.left,
-              top: "-20px",
-              animation: `slowDrift ${item.dur} linear infinite`,
-              animationDelay: item.delay,
-            }}
-          >
-            <span className="text-sm">{item.emoji}</span>
-          </div>
-        ))}
-      </div>
+      {/* ambient drifting decor (avoid emoji on final slide) */}
+      {currentStoryIndex < storyParagraphs.length - 1 && (
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+          {[
+            { id: 101, left: "10%", delay: "0s", dur: "8s", emoji: "🌸" },
+            { id: 102, left: "90%", delay: "2s", dur: "9s", emoji: "💖" },
+            { id: 103, left: "30%", delay: "4s", dur: "7s", emoji: "✨" },
+            { id: 104, left: "70%", delay: "1s", dur: "10s", emoji: "🌸" },
+          ].map(item => (
+            <div 
+              key={item.id}
+              className="absolute animate-float opacity-30 text-glow-rose select-none"
+              style={{
+                left: item.left,
+                top: "-20px",
+                animation: `slowDrift ${item.dur} linear infinite`,
+                animationDelay: item.delay,
+              }}
+            >
+              <span className="text-sm">{item.emoji}</span>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Header / Subtitle indicator */}
       {/* Top progress indicator bar */}
       <div className="space-y-1 z-10 relative px-4">
         <div className="text-rose-500/80 text-[10px] tracking-widest uppercase font-extrabold font-sans">
-          💝 Letter for My Love
+          {currentStoryIndex === storyParagraphs.length - 1 ? 'Letter for My Love' : '💝 Letter for My Love'}
         </div>
         <div className="flex items-center justify-center gap-1.5 text-xs text-rose-700 font-bold bg-rose-50/70 border border-pink-100/50 px-3 py-1 rounded-full shadow-sm backdrop-blur-[1px]">
           <span>Progress:</span>
@@ -90,17 +96,31 @@ export const ClosingSection: React.FC<ClosingSectionProps> = ({
       </div>
 
       {/* Main Subtitle Box (Click/Tap card area to advance with hearts) */}
-      <div className="flex-1 w-full max-w-sm flex items-center justify-center px-4 py-3 z-10">
-        <div 
-          onClick={(e) => {
-            triggerLoveBurst(e);
-            // Advance on tap if not at the end
-            if (currentStoryIndex < storyParagraphs.length - 1) {
-              setCurrentStoryIndex(prev => prev + 1);
-            }
-          }}
-          className="w-full bg-white/95 border-2 border-pink-100 rounded-3xl p-6 shadow-[0_15px_40px_rgba(244,63,94,0.11)] hover:shadow-[0_20px_50px_rgba(244,63,94,0.16)] transition-all duration-300 hover:scale-[1.02] active:scale-98 cursor-pointer select-none flex flex-col justify-between relative overflow-hidden min-h-[310px]"
-        >
+      <div className="flex-1 w-full flex items-center justify-center px-4 py-3 z-10">
+        {/* Final slide special layout */}
+        {currentStoryIndex === storyParagraphs.length - 1 ? (
+          <div className="w-full bg-white/95 border-2 border-transparent rounded-3xl p-8 shadow-[0_12px_30px_rgba(0,0,0,0.06)] transition-all duration-500 select-none relative overflow-visible min-h-[360px] flex items-center justify-center">
+            {/* Decorative frames: webs + flowers (non-overlapping) */}
+            <img src="/spider-web.svg" alt="web" className="absolute left-6 top-6 w-28 h-28 opacity-10 pointer-events-none" />
+            <img src="/spider-web.svg" alt="web" className="absolute right-6 top-6 w-28 h-28 opacity-10 pointer-events-none rotate-90" />
+            <img src="/rose.svg" alt="rose" className="absolute left-8 bottom-8 w-20 h-20 opacity-95 pointer-events-none" />
+            <img src="/daisy.svg" alt="daisy" className="absolute right-8 bottom-8 w-20 h-20 opacity-95 pointer-events-none" />
+
+            <div className="mx-auto w-full max-w-[700px] px-6 py-6 font-script text-[18px] leading-relaxed text-[var(--spider-blue)] text-left" style={{ lineHeight: 1.8, whiteSpace: 'pre-wrap' }}>
+              <TypewriterText key={`story-${currentStoryIndex}`} text={storyParagraphs[currentStoryIndex]} speed={8} />
+            </div>
+          </div>
+        ) : (
+          <div 
+            onClick={(e) => {
+              triggerLoveBurst(e);
+              // Advance on tap if not at the end
+              if (currentStoryIndex < storyParagraphs.length - 1) {
+                setCurrentStoryIndex(prev => prev + 1);
+              }
+            }}
+            className="w-full bg-white/95 border-2 border-pink-100 rounded-3xl p-6 shadow-[0_15px_40px_rgba(244,63,94,0.11)] hover:shadow-[0_20px_50px_rgba(244,63,94,0.16)] transition-all duration-300 hover:scale-[1.02] active:scale-98 cursor-pointer select-none flex flex-col justify-between relative overflow-hidden min-h-[310px]"
+          >
           {/* Visual Ribbon Tape effect */}
           <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-6.5 bg-pink-100/60 border border-pink-200/30 rounded-sm rotate-1 z-20 shadow-sm" />
 
@@ -128,14 +148,15 @@ export const ClosingSection: React.FC<ClosingSectionProps> = ({
           </div>
 
           {/* Floating helpful action hint */}
-          <div className="text-center mt-3 animate-pulse">
+            <div className="text-center mt-3 animate-pulse">
             <span className="text-[10px] uppercase tracking-wider font-extrabold text-pink-500/80 bg-rose-50/50 px-2.5 py-0.5 rounded-full border border-pink-100/30">
               {currentStoryIndex < storyParagraphs.length - 1 
                 ? "Tap to send love & continue 💖" 
-                : "You are my absolute everything 🧸"}
+                : "You are my absolute everything"}
             </span>
           </div>
         </div>
+        )}
       </div>
 
       {/* Media controls panel */}

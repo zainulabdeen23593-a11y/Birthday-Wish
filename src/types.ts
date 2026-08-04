@@ -10,9 +10,8 @@ export enum AppSection {
   Question = 1.8,
   Celebration = 2.0,
   Cake = 3.0,
-  Apology = 4.0,
-  Gallery = 5.0,
-  Closing = 6.0
+  Gallery = 4.0,
+  Closing = 5.0
 }
 
 export interface LoveBurstParticle {

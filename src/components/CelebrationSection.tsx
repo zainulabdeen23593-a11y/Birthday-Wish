@@ -19,6 +19,8 @@ export const CelebrationSection: React.FC<CelebrationSectionProps> = ({
 }) => {
   return (
     <div id="section-celebration" className="flex-1 flex flex-col justify-between py-12 items-center text-center relative overflow-hidden">
+      <img src="/spider-web.svg" alt="web" className="absolute top-3 right-3 w-20 h-20 opacity-8 pointer-events-none" />
+      <img src="/daisy.svg" alt="daisy" className="absolute bottom-6 left-6 w-14 h-14 opacity-95 pointer-events-none" />
       
       {/* Embedded JavaScript Confetti loop rendering */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
@@ -83,7 +85,7 @@ export const CelebrationSection: React.FC<CelebrationSectionProps> = ({
 
       <div className="flex-1 flex flex-col items-center justify-center gap-6 z-20 px-4">
         {/* Spinning star burst */}
-        <div className="w-20 h-20 text-pink-400 animate-spin" style={{ animationDuration: '6s' }}>
+        <div className="w-20 h-20 animate-spin" style={{ animationDuration: '6s', color: 'var(--accent-pink)' }}>
           <Sparkles className="w-full h-full text-glow-rose" />
         </div>
 
@@ -91,13 +93,13 @@ export const CelebrationSection: React.FC<CelebrationSectionProps> = ({
           {/* Cozy Ambient Aura behind title */}
           <div className="absolute inset-0 bg-pink-200/25 rounded-full blur-2xl scale-125 pointer-events-none -z-10 animate-pulse" />
           
-          <h1 className="font-script text-6xl text-rose-600 text-glow-rose animate-bounce">
-            Happy Birthday! 🎂
+          <h1 className="font-display text-6xl text-[var(--spider-red)] animate-bounce">
+            Happy Birthday!
           </h1>
           
-          <p className="text-rose-950 text-sm font-medium mt-4 leading-relaxed max-w-xs mx-auto">
+          <p className="text-[var(--spider-blue)] font-script text-sm mt-4 leading-relaxed max-w-xs mx-auto">
             Before anything else... <br/>
-            <span className="text-rose-700 font-bold font-serif-elegant">I have <span className="marker-highlight text-rose-800">something</span> to show you.</span>
+            <span className="font-bold">I have <span className="marker-highlight text-[var(--accent-pink)]">something</span> to show you.</span>
           </p>
         </div>
       </div>
@@ -106,7 +108,8 @@ export const CelebrationSection: React.FC<CelebrationSectionProps> = ({
       <button 
         type="button"
         onClick={onNext}
-        className="px-6 py-2 bg-white border-2 border-pink-200 hover:bg-pink-50 hover:text-rose-900 rounded-full text-xs text-rose-700 font-semibold tracking-wider z-20 active:scale-95 transition-all cursor-pointer shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-300"
+        style={{ borderColor: 'var(--accent-pink)' }}
+        className="px-6 py-2 bg-white rounded-full text-xs text-[var(--spider-blue)] font-semibold tracking-wider z-20 active:scale-95 transition-all cursor-pointer shadow-sm focus:outline-none"
       >
         SKIP INTRO ➔
       </button>

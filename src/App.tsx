@@ -27,7 +27,6 @@ import { PasscodeSection } from './components/PasscodeSection';
 import { QuestionSection } from './components/QuestionSection';
 import { CelebrationSection } from './components/CelebrationSection';
 import { CakeSection } from './components/CakeSection';
-import { ApologySection } from './components/ApologySection';
 import { GallerySection } from './components/GallerySection';
 import { ClosingSection } from './components/ClosingSection';
 
@@ -111,7 +110,7 @@ export default function App() {
   ]);
 
   // Section 4: Progressive line transitions and warm backgrounds
-  const [apologyLinesRevealed, setApologyLinesRevealed] = useState(0);
+  
   const [embers, setEmbers] = useState<readonly EmberState[]>([]);
 
   // Section 5: Gallery scrapbook states
@@ -205,7 +204,7 @@ export default function App() {
       const allBlown = candles.every(c => !c.lit);
       if (allBlown) {
         const timer = setTimeout(() => {
-          setSection(AppSection.Apology);
+          setSection(AppSection.Gallery);
         }, 2000);
         return () => clearTimeout(timer);
       }
@@ -213,19 +212,7 @@ export default function App() {
   }, [candles, section]);
 
   // Section 4: Progressive apology fades timers
-  useEffect(() => {
-    if (section === AppSection.Apology) {
-      setApologyLinesRevealed(1);
-      const timers = [
-        setTimeout(() => setApologyLinesRevealed(2), 2200),
-        setTimeout(() => setApologyLinesRevealed(3), 4400),
-        setTimeout(() => setApologyLinesRevealed(4), 6800),
-        setTimeout(() => setApologyLinesRevealed(5), 9200),
-        setTimeout(() => setApologyLinesRevealed(6), 11500) // Shows continue button
-      ];
-      return () => timers.forEach(clearTimeout);
-    }
-  }, [section]);
+  
 
   // Global clean restart handler
   const restartApp = useCallback(() => {
@@ -236,7 +223,7 @@ export default function App() {
       resetQuestionScreen();
       clearHearts();
       dispatchCandles({ type: 'RESET' });
-      setApologyLinesRevealed(0);
+      
       setCurrentStoryIndex(0);
       setIsPlaying(false);
       
@@ -260,10 +247,21 @@ export default function App() {
       {/* Low-opacity SVG noise / paper grain overlay */}
       <div className="absolute inset-0 grain-overlay pointer-events-none opacity-[0.75] z-10 animate-fade-in" aria-hidden="true" />
 
+      {/* Spider-web overlays in corners */}
+      <img src="/spider-web.svg" className="web-corner top-left" alt="web" aria-hidden="true" />
+      <img src="/spider-web.svg" className="web-corner top-right" alt="web" aria-hidden="true" />
+      <img src="/spider-web.svg" className="web-corner bottom-left" alt="web" aria-hidden="true" />
+      <img src="/spider-web.svg" className="web-corner bottom-right" alt="web" aria-hidden="true" />
+
+      {/* Floating flower stickers (decorative) */}
+      <img src="/rose.svg" className="floating-sticker" style={{ left: '8%', top: '22%', animationDelay: '0s' }} alt="rose" />
+      <img src="/daisy.svg" className="floating-sticker" style={{ right: '10%', top: '16%', animationDelay: '1.2s' }} alt="daisy" />
+      <img src="/rose.svg" className="floating-sticker" style={{ left: '22%', bottom: '20%', animationDelay: '2.1s' }} alt="rose" />
+
       {/* Cozy Blurred Backdrop Blobs */}
-      <div 
-        className={`absolute inset-0 pointer-events-none overflow-hidden z-0 transition-opacity duration-1000 ${
-          section === AppSection.Apology ? "opacity-[0.12]" : "opacity-35"
+        <div 
+          className={`absolute inset-0 pointer-events-none overflow-hidden z-0 transition-opacity duration-1000 ${
+          section === AppSection.Gallery ? "opacity-[0.12]" : "opacity-35"
         }`}
         aria-hidden="true"
       >
@@ -277,7 +275,7 @@ export default function App() {
 
       {/* Floating Ambient Light Specks (Active from Apology onwards) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
-        {section >= AppSection.Apology && embers.map(ember => (
+        {section >= AppSection.Gallery && embers.map(ember => (
           <div 
             key={ember.id} 
             className="absolute rounded-full bg-rose-300/25 blur-[1px]"
@@ -287,7 +285,7 @@ export default function App() {
               width: ember.size,
               height: ember.size,
               animationName: 'slowDrift',
-              animationDuration: section === AppSection.Apology ? `calc(${ember.duration} * 2.2)` : ember.duration,
+              animationDuration: section === AppSection.Gallery ? `calc(${ember.duration} * 2.2)` : ember.duration,
               animationTimingFunction: 'linear',
               animationIterationCount: 'infinite',
               animationDelay: ember.delay
@@ -299,7 +297,7 @@ export default function App() {
       {/* Main Responsive Mobile-First Screen Framework */}
       <main 
         id="main-frame" 
-        className={`w-full max-w-md aspect-[9/16] max-h-[850px] bg-white/80 backdrop-blur-md rounded-3xl border-4 border-pink-200/80 shadow-[0_20px_50px_rgba(244,63,94,0.12)] relative flex flex-col justify-between overflow-hidden z-10 p-6 transition-all duration-1000 ${
+        className={`w-full max-w-md aspect-[9/16] max-h-[850px] bg-white/80 backdrop-blur-md rounded-3xl border-4 relative flex flex-col justify-between overflow-hidden z-10 p-6 transition-all duration-400 ${
           isShaking ? "animate-screen-shake" : ""
         }`}
       >
@@ -366,12 +364,7 @@ export default function App() {
           />
         )}
 
-        {section === AppSection.Apology && (
-          <ApologySection
-            apologyLinesRevealed={apologyLinesRevealed}
-            onNext={() => setSection(AppSection.Gallery)}
-          />
-        )}
+        
 
         {section === AppSection.Gallery && (
           <GallerySection

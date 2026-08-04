@@ -14,27 +14,29 @@ import {
 // CONSTANTS
 // ============================================================================
 
-export const DEFAULT_PASSCODE = "2303";
+export const DEFAULT_PASSCODE = "0523";
 export const DEFAULT_LOVE_COUNT_KEY = "pookie_love_count";
 export const BASE_LOVE_COUNT = 520;
 
 export const STORY_PARAGRAPHS: readonly string[] = [
-  "Happy Birthday, My Love ❤️",
-  "There are countless beautiful words in this world, yet every one of them falls short when I try to describe what you mean to me.",
-  "You walked into my life so quietly, yet somehow you became the loudest heartbeat within it. You turned ordinary days into memories I never want to lose, and without even realizing it, you became the place my heart always returns to.",
-  "Thank you for every smile that healed a part of me, for every laugh that still echoes in my thoughts, and for every moment that made this life infinitely more beautiful simply because you were in it.",
-  "No one knows what tomorrow has written for us. But if life is kind enough to let our paths remain together, then I promise to spend every tomorrow giving you the same warmth, peace, and love that you've given me without ever asking for anything in return.",
-  "Today is more than a birthday.",
-  "It is the anniversary of the day the universe quietly created the person who would one day become my greatest blessing.",
-  "So today, I celebrate not just the day you were born—",
-  "I celebrate the day my world unknowingly began waiting for you.",
-  "Happy Birthday, My Love.",
-  "Happy Birthday, My Home.",
-  "Happy Birthday, My Everything. ❤️"
+  "Wish",
+  "No emoji spoiler alert!  Tick tick. !",
+  "It is 12:00 now and It was not just the day when you were born in the planet earth it was the eye catching scenario of my life when this day came and it remind me of the moment when my entire universe begin",
+  "yes in the term of physics it start with the famous theory called \"big bang\" but mine one start with your birthday \"5 August \"",
+  "i wish i can see the stunning beauty time when you were born to make my life beautiful and growing and i wish the world were ending tomorrow then I could celebrate your birthday and disappear with you and we never exist",
+  "come with me muqadas fatima we are going to love each other without any fear or restraint perhaps we love unconditionally from the past 4 years to till the last breast of muhammad moiz and muqadas fatima",
+  "rather than living in horrible past why not we start the new journey on your birth-year of 2026 the shining and pretty present  where we are the one with unreadable harmony with each other",
+  "yes we have faced the worst circumstances of life but on the other hand we have the loveliest memories together that are making is both fall for each other every day every month and every year!!",
+  "last but not the least i am giving you the commitment that i want to do everything for you and im doing! Whatever you love or hatess this goes to my personal opinion if you hate something it means that thing should be hated by me also!",
+  "Now in every obstacle moiz is always yours! As you stand up with me every-time i take the swear to do the same"
 ] as const;
 
+// Final closing long message inserted as the last slide (exact text preserved)
+export const FINAL_CLOSING_MESSAGE = `"Wish
+No emoji spoiler alert!  Tick tick. ! It is 12:00 now and It was not just the day when you were born in the planet earth it was the eye catching scenario of my life when this day came and it remind me of the moment when my entire universe begin yes in the term of physics it start with the famous theory called "big bang" but mine one start with your birthday "5 August " i wish i can see the stunning beauty time when you were born to make my life beautiful and growing and i wish the world were ending tomorrow then I could celebrate your birthday and disappear with you and we never exist come with me muqadas fatima we are going to love each other without any fear or restraint perhaps we love unconditionally from the past 4 years to till the last breast of muhammad moiz and muqadas fatima rather than living in horrible past why not we start the new journey on your birth-year of 2026 the shining and pretty present  where we are the one with unreadable harmony with each other yes we have faced the worst circumstances of life but on the other hand we have the loveliest memories together that are making is both fall for each other every day every month and every year!!last but not the least i am giving you the commitment that i want to do everything for you and im doing! Whatever you love or hatess this goes to my personal opinion if you hate something it means that thing should be hated by me also! Now in every obstacle moiz is always yours! As you stand up with me every-time i take the swear to do the same`;
+
 export const EMOJI_BURST_POOL: readonly string[] = ["💖", "🌸", "✨", "🥰", "🎀", "🧸", "🍭", "🍬", "🍰", "🎈"] as const;
-export const CONFETTI_COLORS: readonly string[] = ['#e8b4b8', '#c9a7eb', '#ffd89b', '#4fa3e3', '#f43f5e', '#10b981', '#f59e0b'] as const;
+export const CONFETTI_COLORS: readonly string[] = ['#f6caca', '#c9a7eb', '#ffd89b', '#4fa3e3', '#E23636', '#a7f3d0', '#f59e0b'] as const;
 export const BALLOON_COLORS: readonly string[] = [
   'rgba(232, 180, 184, 0.85)', // rose gold
   'rgba(201, 167, 235, 0.85)', // soft lavender
@@ -63,7 +65,6 @@ export const saveLoveCount = (count: number): void => {
 };
 
 export const getSectionBgClass = (section: AppSection): string => {
-  if (section === AppSection.Apology) return "animate-gradient-bg-dim";
   if (section >= AppSection.Gallery) return "animate-gradient-bg-warm";
   return "animate-gradient-bg";
 };

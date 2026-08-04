@@ -1,14 +1,74 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Pacifico&display=swap');
+
+:root {
+  --spider-red: #E23636;
+  --spider-blue: #1B1B75;
+  --accent-pink: #f6caca;
+  --accent-purple: #c9a7eb;
+  --accent-green: #a7f3d0;
+  --muted: #f3f4f6;
+}
 
 /* Global Styles */
 body {
-  font-family: 'Poppins', 'Quicksand', sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  color: #4c0519; /* Deep rose-950 for high contrast and cute look */
-  background-color: #ffe4e6; /* Soft rose-100 */
+  color: var(--spider-blue);
+  background-color: #fafafa;
 }
+
+.font-display {
+  font-family: 'Bangers', 'Impact', sans-serif;
+}
+
+.font-script {
+  font-family: 'Pacifico', cursive;
+}
+
+/* Watermark tiled "523" background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><text x='0' y='40' font-size='40' fill='%231b1b75' fill-opacity='0.03' font-family='Arial'>523</text></svg>");
+  background-repeat: repeat;
+  transform: rotate(-25deg) scale(1.1);
+  opacity: 1;
+  z-index: 0;
+}
+
+/* Subtle spider-web overlays */
+.web-corner {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 5;
+}
+.web-corner.top-left { top: 8px; left: 8px; transform: rotate(0deg); }
+.web-corner.top-right { top: 8px; right: 8px; transform: rotate(90deg); }
+.web-corner.bottom-left { bottom: 8px; left: 8px; transform: rotate(270deg); }
+.web-corner.bottom-right { bottom: 8px; right: 8px; transform: rotate(180deg); }
+
+/* Floating stickers (flowers) */
+.floating-sticker {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  z-index: 15;
+  opacity: 0.95;
+  transform-origin: center;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Cake centerpiece style override */
+.cake-center { width: 220px; height: 220px; }
+
 
 /* Serif & Script fonts */
 .font-serif-elegant {
@@ -214,7 +274,7 @@ body {
   100% { opacity: 1; transform: translateY(0); }
 }
 .animate-fade-slide-up {
-  animation: fadeSlideUp 1s forwards cubic-bezier(0.16, 1, 0.3, 1);
+  animation: fadeSlideUp 400ms forwards cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Slow light speck particles */
@@ -246,32 +306,31 @@ body {
   scrollbar-width: none;
 }
 
+
 /* Keypad Grid styling - Springy press animation */
 .keypad-btn {
   background: #ffffff;
-  border: 2px solid #fbcfe8; /* Soft pink-200 */
-  color: #be185d; /* Dark pink rose-700 */
-  box-shadow: 0 4px 10px rgba(251, 113, 133, 0.12);
+  border: 2px solid var(--accent-pink);
+  color: var(--spider-red);
+  box-shadow: 0 4px 10px rgba(226,54,54,0.08);
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .keypad-btn:hover {
   background: #fff1f2;
-  border-color: #f43f5e;
+  border-color: var(--spider-red);
   transform: scale(1.05);
 }
 .keypad-btn:active {
   background: #ffe4e6;
-  border-color: #e11d48;
+  border-color: var(--spider-red);
   transform: scale(0.88);
 }
 
 /* Polaroid memory style */
 .polaroid {
-  background: #ffffff;
-  border: 4px solid #fbcfe8;
-  box-shadow: 0 12px 35px -10px rgba(190, 24, 93, 0.2);
+  background: #ffe4e6;
+  border-color: var(--spider-red);
 }
-
 /* Wax seal stamp-press animation */
 @keyframes stampPress {
   0% { transform: scale(2) rotate(-15deg); opacity: 0; filter: blur(4px); }

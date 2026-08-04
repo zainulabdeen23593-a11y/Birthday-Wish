@@ -26,6 +26,9 @@ export const LandingSection: React.FC<LandingSectionProps> = ({
 }) => {
   return (
     <div id="section-landing" className="flex-1 flex flex-col justify-between py-6 items-center text-center animate-fade-slide-up relative overflow-hidden h-full">
+      {/* decorative overlays for consistent theme */}
+      <img src="/spider-web.svg" alt="web" className="absolute top-4 left-4 w-24 h-24 opacity-10 pointer-events-none" />
+      <img src="/rose.svg" alt="rose" className="absolute bottom-6 right-8 w-16 h-16 opacity-95 pointer-events-none" />
       
       {/* Background floating decor cherry blossoms/hearts for lovely mood */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
@@ -70,8 +73,8 @@ export const LandingSection: React.FC<LandingSectionProps> = ({
 
       {/* Header section */}
       <div className="space-y-2 mt-4 z-10 relative">
-        <h1 className="font-serif-elegant text-3xl md:text-4xl text-rose-700 tracking-wide font-medium text-glow-rose">
-          A little <span className="marker-highlight text-rose-800">something</span><br/>for you 💖
+        <h1 className="font-display text-3xl md:text-4xl text-[var(--spider-red)] tracking-wide font-medium">
+          A little <span className="marker-highlight text-[var(--spider-blue)]">something</span><br/>for you
         </h1>
         <HeadingFlourish />
         <p className="text-xs font-semibold text-rose-500/80 uppercase tracking-widest animate-pulse">
@@ -114,10 +117,10 @@ export const LandingSection: React.FC<LandingSectionProps> = ({
 
             {/* Caption line */}
             <div className="mt-2 text-center">
-              <span className="font-script text-2xl text-rose-600 font-semibold leading-none drop-shadow-sm">
-                Peach & Goma 🎀
-              </span>
-            </div>
+                  <span className="font-script text-2xl text-[var(--spider-blue)] font-semibold leading-none drop-shadow-sm">
+                    Peach & Goma
+                  </span>
+                </div>
           </div>
         </div>
 
@@ -135,9 +138,10 @@ export const LandingSection: React.FC<LandingSectionProps> = ({
           id="btn-landing-open"
           type="button"
           onClick={onNext}
-          className="w-full py-4 rounded-xl bg-gradient-to-r from-rose-500 via-pink-500 to-rose-400 hover:from-rose-600 hover:to-pink-500 text-white font-medium shadow-lg shadow-pink-400/20 active:scale-95 transition-all text-center flex items-center justify-center gap-2 cursor-pointer border-2 border-pink-100 animate-pulse hover:shadow-xl hover:shadow-rose-400/30"
+          style={{ background: 'linear-gradient(90deg, var(--spider-red), var(--accent-pink))', color: '#fff' }}
+          className="w-full py-4 rounded-xl font-medium shadow-lg active:scale-95 transition-all text-center flex items-center justify-center gap-2 cursor-pointer border-2 border-[var(--accent-pink)] animate-pulse"
         >
-          <Gift className="w-5 h-5 animate-bounce" /> Tap to open note 🧸
+          <Gift className="w-5 h-5 animate-bounce" /> Tap to open note
         </button>
       </div>
     </div>
