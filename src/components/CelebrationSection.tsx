@@ -5,6 +5,8 @@
 import React from 'react';
 import { Sparkles } from 'lucide-react';
 import { ConfettiParticle, BalloonState } from '../types';
+import { BESTIE_NAME } from '../utils';
+import { ImpactBurst, AnimeStamp } from './AnimeTheme';
 
 interface CelebrationSectionProps {
   readonly confetti: readonly ConfettiParticle[];
@@ -18,11 +20,10 @@ export const CelebrationSection: React.FC<CelebrationSectionProps> = ({
   onNext,
 }) => {
   return (
-    <div id="section-celebration" className="flex-1 flex flex-col justify-between py-12 items-center text-center relative overflow-hidden">
-      <img src="/spider-web.svg" alt="web" className="absolute top-3 right-3 w-20 h-20 opacity-8 pointer-events-none" />
-      <img src="/daisy.svg" alt="daisy" className="absolute bottom-6 left-6 w-14 h-14 opacity-95 pointer-events-none" />
-      
-      {/* Embedded JavaScript Confetti loop rendering */}
+    <div id="section-celebration" className="flex-1 flex flex-col justify-between py-2 items-center text-center relative overflow-hidden min-h-0 h-full">
+      <div className="speed-lines" aria-hidden="true" />
+      <ImpactBurst />
+
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
         {confetti.map(p => (
           <div 
@@ -44,7 +45,6 @@ export const CelebrationSection: React.FC<CelebrationSectionProps> = ({
           />
         ))}
 
-        {/* Staggered Rising Balloons */}
         {balloons.map(b => (
           <div 
             key={b.id}
@@ -58,9 +58,8 @@ export const CelebrationSection: React.FC<CelebrationSectionProps> = ({
               animationDelay: b.delay,
             }}
           >
-            {/* Balloon Body */}
             <div 
-              className="rounded-full shadow-lg relative flex items-center justify-center"
+              className="rounded-full shadow-lg relative flex items-center justify-center border-2 border-slate-900"
               style={{
                 width: b.size,
                 height: `calc(${b.size} * 1.2)`,
@@ -70,48 +69,41 @@ export const CelebrationSection: React.FC<CelebrationSectionProps> = ({
             >
               <div className="w-1.5 h-3 bg-white/30 absolute top-3 left-4 rounded-full blur-[1px]" />
             </div>
-            {/* Balloon Knot (Triangle) */}
             <div 
               className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[8px] -mt-[2px]" 
               style={{ borderBottomColor: b.color }}
             />
-            {/* Balloon String (Wiggling curved SVG line) */}
-            <svg className="w-4 h-16 -mt-[2.5px] text-white/35" viewBox="0 0 20 60" fill="none">
+            <svg className="w-4 h-16 -mt-[2.5px] text-slate-400/50" viewBox="0 0 20 60" fill="none">
               <path d="M 10 0 Q 15 15, 10 30 T 10 60" stroke="currentColor" strokeWidth="1.5" className="animate-pulse" />
             </svg>
           </div>
         ))}
       </div>
 
-      <div className="flex-1 flex flex-col items-center justify-center gap-6 z-20 px-4">
-        {/* Spinning star burst */}
-        <div className="w-20 h-20 animate-spin" style={{ animationDuration: '6s', color: 'var(--accent-pink)' }}>
+      <div className="flex-1 flex flex-col items-center justify-center gap-3 z-20 px-4 min-h-0">
+        <div className="w-12 h-12 animate-spin shrink-0" style={{ animationDuration: '6s', color: '#22d3ee' }}>
           <Sparkles className="w-full h-full text-glow-rose" />
         </div>
 
-        <div className="space-y-4 relative">
-          {/* Cozy Ambient Aura behind title */}
-          <div className="absolute inset-0 bg-pink-200/25 rounded-full blur-2xl scale-125 pointer-events-none -z-10 animate-pulse" />
-          
-          <h1 className="font-display text-6xl text-[var(--spider-red)] animate-bounce">
-            Happy Birthday!
+        <div className="space-y-1 relative">
+          <AnimeStamp text="BIRTHDAY" />
+          <p className="text-[11px] tracking-wide text-rose-600">Late hai, dil nahi</p>
+          <h1 className="font-display text-[clamp(2rem,7vh,3rem)] text-[var(--spider-red)] animate-bounce leading-none">
+            Happy (late)<br/>Birthday
           </h1>
-          
-          <p className="text-[var(--spider-blue)] font-script text-sm mt-4 leading-relaxed max-w-xs mx-auto">
-            Before anything else... <br/>
-            <span className="font-bold">I have <span className="marker-highlight text-[var(--accent-pink)]">something</span> to show you.</span>
+          <p className="font-display text-[clamp(1.6rem,5vh,2.2rem)] text-[#7c3aed] drop-shadow-[3px_3px_0_#140c28]">{BESTIE_NAME}!</p>
+          <p className="text-slate-700 text-sm mt-2 leading-snug max-w-xs mx-auto font-medium">
+            Bestu late aaya. Bestu phir bhi aaya.
           </p>
         </div>
       </div>
 
-      {/* Quick manual advance button */}
       <button 
         type="button"
         onClick={onNext}
-        style={{ borderColor: 'var(--accent-pink)' }}
-        className="px-6 py-2 bg-white rounded-full text-xs text-[var(--spider-blue)] font-semibold tracking-wider z-20 active:scale-95 transition-all cursor-pointer shadow-sm focus:outline-none"
+        className="px-6 py-2 bg-white rounded-full text-xs text-slate-800 font-black tracking-wider z-20 active:scale-95 transition-all cursor-pointer shadow-[3px_3px_0_#0f172a] border-2 border-slate-900 shrink-0"
       >
-        SKIP INTRO ➔
+        SKIP ➔
       </button>
     </div>
   );

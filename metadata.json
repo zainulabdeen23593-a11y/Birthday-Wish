@@ -1,6 +1,6 @@
 {
-  "name": "Sincere Birthday Wish",
-  "description": "An interactive, elegant, and mobile-friendly celebration website with high-quality CSS animations, particles, and music.",
+  "name": "Late Anime Birthday Raid",
+  "description": "An interactive anime-style belated birthday episode for a bestie, with click reactions, a passcode reveal, and a late-wish letter.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": []
 }

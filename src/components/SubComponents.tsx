@@ -3,6 +3,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import { ClickReaction } from '../types';
 
 // ============================================================================
 // HEADING FLOURISH
@@ -74,9 +75,9 @@ export const KeypadButton: React.FC<KeypadButtonProps> = ({ label, onClick }) =>
   <button
     type="button"
     onClick={onClick}
-    className="w-14 h-14 rounded-full mx-auto flex items-center justify-center font-serif text-lg font-bold select-none keypad-btn focus:outline-none focus:ring-2"
+    className="rounded-full mx-auto flex items-center justify-center font-display text-xl font-bold select-none keypad-btn focus:outline-none focus:ring-2 relative"
   >
-    <img src="/spider-icon.svg" alt="spider" className="absolute -top-2 -right-2 w-5 h-5 opacity-80 pointer-events-none" />
+    <span className="absolute -top-1 -right-1 text-[10px] pointer-events-none">⭐</span>
     {label}
   </button>
 );
@@ -89,17 +90,17 @@ interface PasscodeIndicatorsProps {
 }
 
 export const PasscodeIndicators: React.FC<PasscodeIndicatorsProps> = ({ length }) => (
-  <div className="flex justify-center gap-4 my-6" aria-label={`Passcode length entered: ${length} out of 4`}>
+  <div className="flex justify-center gap-3 my-2" aria-label={`Passcode length entered: ${length} out of 4`}>
     {Array.from({ length: 4 }).map((_, i) => (
       <div 
         key={i} 
-        className={`w-12 h-12 rounded-xl bg-white flex items-center justify-center transition-all duration-300 relative`} 
+        className={`w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-white flex items-center justify-center transition-all duration-300 relative`} 
         style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: i < length ? 'var(--accent-pink)' : 'rgba(246,202,202,0.6)', transform: i < length ? 'scale(1.05)' : 'scale(1)', boxShadow: i < length ? '0 4px 12px rgba(226,54,54,0.08)' : 'none' }}>
         {i < length && (
           <div className="absolute inset-0 bg-[var(--accent-pink)/40] rounded-xl blur-[3px] animate-pulse" />
         )}
         {i < length ? (
-          <img src="/spider-icon.svg" className="w-6 h-6 relative z-10" alt="entered" />
+          <span className="relative z-10 text-lg">⚡</span>
         ) : (
           <span className="text-xs text-[var(--muted)/60] relative z-10" aria-hidden="true">○</span>
         )}
@@ -131,10 +132,10 @@ export const WrongPasscodeOverlay: React.FC<WrongPasscodeOverlayProps> = ({ onRe
         <path d="M 45 65 Q 50 58 55 65" fill="none" stroke="var(--spider-blue)" strokeWidth="3" />
       </svg>
     </div>
-    <h3 className="text-2xl font-display text-[var(--spider-red)] tracking-wide font-semibold">WRONG PASSCODE!</h3>
+    <h3 className="text-2xl font-display text-[var(--spider-red)] tracking-wide font-semibold">OYE?! GALAT CODE!</h3>
     <p className="text-[var(--spider-blue)] mt-2 max-w-xs text-sm font-medium">
-      Oops, that passcode wasn't correct. Try again! <br/>
-      <span className="text-xs text-[var(--accent-pink)]">(Hint: check the hint code on the entry pad!)</span>
+      Yeh combo episode nahi kholta. Dobara try kar! 😭<br/>
+      <span className="text-xs text-violet-500">(Hint: char digits. Naam spoiler nahi.)</span>
     </p>
     <button
       type="button"
@@ -185,4 +186,22 @@ export const HeartSilhouetteBorder: React.FC<HeartSilhouetteBorderProps> = ({
       className="opacity-75"
     />
   </svg>
+);
+
+export const ClickReactionOverlay: React.FC<{ reactions: readonly ClickReaction[] }> = ({ reactions }) => (
+  <div className="absolute inset-0 pointer-events-none z-[70] overflow-hidden" aria-hidden="true">
+    {reactions.map((r) => (
+      <span
+        key={r.id}
+        className={`anime-reaction anime-reaction-${r.mood}`}
+        style={{
+          left: `${r.x}%`,
+          top: `${r.y}%`,
+          ['--rot' as string]: `${r.rot}deg`,
+        }}
+      >
+        {r.text}
+      </span>
+    ))}
+  </div>
 );

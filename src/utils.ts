@@ -7,42 +7,58 @@ import {
   AppSection, 
   LoveBurstParticle, 
   CandleState, 
-  CandlesAction 
+  CandlesAction,
+  ClickReaction,
+  ReactionMood
 } from './types';
 
 // ============================================================================
 // CONSTANTS
 // ============================================================================
 
-export const DEFAULT_PASSCODE = "0523";
+export const DEFAULT_PASSCODE = "1413";
 export const DEFAULT_LOVE_COUNT_KEY = "pookie_love_count";
-export const BASE_LOVE_COUNT = 520;
+export const BASE_LOVE_COUNT = 1100;
+export const BESTIE_NAME = "Ghana";
 
 export const STORY_PARAGRAPHS: readonly string[] = [
-  "Wish",
-  "No emoji spoiler alert!  Tick tick. !",
-  "It is 12:00 now and It was not just the day when you were born in the planet earth it was the eye catching scenario of my life when this day came and it remind me of the moment when my entire universe begin",
-  "yes in the term of physics it start with the famous theory called \"big bang\" but mine one start with your birthday \"5 August \"",
-  "i wish i can see the stunning beauty time when you were born to make my life beautiful and growing and i wish the world were ending tomorrow then I could celebrate your birthday and disappear with you and we never exist",
-  "come with me muqadas fatima we are going to love each other without any fear or restraint perhaps we love unconditionally from the past 4 years to till the last breast of muhammad moiz and muqadas fatima",
-  "rather than living in horrible past why not we start the new journey on your birth-year of 2026 the shining and pretty present  where we are the one with unreadable harmony with each other",
-  "yes we have faced the worst circumstances of life but on the other hand we have the loveliest memories together that are making is both fall for each other every day every month and every year!!",
-  "last but not the least i am giving you the commitment that i want to do everything for you and im doing! Whatever you love or hatess this goes to my personal opinion if you hate something it means that thing should be hated by me also!",
-  "Now in every obstacle moiz is always yours! As you stand up with me every-time i take the swear to do the same"
+  "Ghana.",
+  "Late. I know. Roast me. I'll wait.",
+  "Okay done? Cool. Now listen —",
+  "If we were in a cartoon, I'd be that bestu running in through the window with a tilted cake, out of breath, still saying \"I made it.\" And you'd be standing there like \"seriously?\" but laughing anyway. That's literally us.",
+  "Okay now I'm being real for a sec.",
+  "You're not just someone who's there. You're someone who stays. 3am calls, stupid fights, saving seats — you show up. Every time. That's not common, Ghana.",
+  "That's you being rare without even trying.",
+  "Happy Belated Birthday, bestie.",
+  "Late gift. Loud heart. Same bestu. 😭🔥💖",
+  "Next year I'll be on time. Maybe."
 ] as const;
 
-// Final closing long message inserted as the last slide (exact text preserved)
-export const FINAL_CLOSING_MESSAGE = `"Wish
-No emoji spoiler alert!  Tick tick. ! It is 12:00 now and It was not just the day when you were born in the planet earth it was the eye catching scenario of my life when this day came and it remind me of the moment when my entire universe begin yes in the term of physics it start with the famous theory called "big bang" but mine one start with your birthday "5 August " i wish i can see the stunning beauty time when you were born to make my life beautiful and growing and i wish the world were ending tomorrow then I could celebrate your birthday and disappear with you and we never exist come with me muqadas fatima we are going to love each other without any fear or restraint perhaps we love unconditionally from the past 4 years to till the last breast of muhammad moiz and muqadas fatima rather than living in horrible past why not we start the new journey on your birth-year of 2026 the shining and pretty present  where we are the one with unreadable harmony with each other yes we have faced the worst circumstances of life but on the other hand we have the loveliest memories together that are making is both fall for each other every day every month and every year!!last but not the least i am giving you the commitment that i want to do everything for you and im doing! Whatever you love or hatess this goes to my personal opinion if you hate something it means that thing should be hated by me also! Now in every obstacle moiz is always yours! As you stand up with me every-time i take the swear to do the same`;
+export const FINAL_CLOSING_MESSAGE = STORY_PARAGRAPHS[STORY_PARAGRAPHS.length - 1];
 
-export const EMOJI_BURST_POOL: readonly string[] = ["💖", "🌸", "✨", "🥰", "🎀", "🧸", "🍭", "🍬", "🍰", "🎈"] as const;
-export const CONFETTI_COLORS: readonly string[] = ['#f6caca', '#c9a7eb', '#ffd89b', '#4fa3e3', '#E23636', '#a7f3d0', '#f59e0b'] as const;
+export const FUNNY_REACTIONS: readonly string[] = ["😂", "🤣", "💀", "Oye?!", "LOL", "🫠", "🤡", "Uff yaar"] as const;
+export const SAD_REACTIONS: readonly string[] = ["😭", "🥺", "😿", "maaf kar", "late...", "💧", "💔", "sorry yaar"] as const;
+export const LOVE_REACTIONS: readonly string[] = ["💖", "🤝", "⭐", "🔥", "zabardast", "bestie", "✨", "🫂"] as const;
+export const EMOJI_BURST_POOL: readonly string[] = [
+  ...FUNNY_REACTIONS, ...SAD_REACTIONS, ...LOVE_REACTIONS
+] as const;
+
+export const NO_RESPONSES: readonly { mood: ReactionMood; title: string; body: string }[] = [
+  { mood: "funny", title: "Oye?!", body: "Late gift reject? Bestie law mein illegal. YES ko +50 XP. 😂" },
+  { mood: "sad", title: "Maaf kar scene...", body: "Raat jag ke banaya aur NO? Sad window start. 😭" },
+  { mood: "love", title: "Bestie check", body: "Accept kar. Roast-karke-phir-aa-jana wala pyaar. 💖" },
+  { mood: "funny", title: "Plot armor on", body: "NO ne YES ko power-up de diya. Apni haar pakka kar rahi hai. 💀" },
+  { mood: "sad", title: "Late, fake nahi", body: "Late mera qasoor. Magar NO option nahi. 🥺" },
+  { mood: "love", title: "Bestu-besti rule", body: "Aisa nahi chalta. YES daba. Cake le ke khara hoon. 🤝" },
+];
+
+export const CONFETTI_COLORS: readonly string[] = ['#22d3ee', '#f472b6', '#fbbf24', '#a78bfa', '#fb7185', '#4ade80', '#38bdf8'] as const;
 export const BALLOON_COLORS: readonly string[] = [
-  'rgba(232, 180, 184, 0.85)', // rose gold
-  'rgba(201, 167, 235, 0.85)', // soft lavender
-  'rgba(255, 216, 155, 0.85)', // yellow candlelight
-  'rgba(244, 63, 94, 0.8)',    // deep rose
-  'rgba(96, 165, 250, 0.85)'   // soft blue
+  'rgba(34, 211, 238, 0.85)',
+  'rgba(244, 114, 182, 0.85)',
+  'rgba(251, 191, 36, 0.85)',
+  'rgba(167, 139, 250, 0.85)',
+  'rgba(251, 113, 133, 0.85)'
 ] as const;
 
 // ============================================================================
@@ -323,4 +339,46 @@ export function useStoryProgress(
   }, [section, isPlaying, currentStoryIndex, setCurrentStoryIndex, setIsPlaying]);
 
   return { slideProgress };
+}
+
+export const getNoResponse = (clickNoCount: number) =>
+  NO_RESPONSES[(Math.max(1, clickNoCount) - 1) % NO_RESPONSES.length];
+
+export interface UseClickReactionsResult {
+  readonly reactions: readonly ClickReaction[];
+  readonly spawnReaction: (e: React.MouseEvent<HTMLElement>) => void;
+}
+
+export function useClickReactions(): UseClickReactionsResult {
+  const [reactions, setReactions] = useState<readonly ClickReaction[]>([]);
+  const moodIndex = React.useRef(0);
+
+  const spawnReaction = useCallback((e: React.MouseEvent<HTMLElement>) => {
+    const moods: readonly ReactionMood[] = ['funny', 'sad', 'love'];
+    const mood = moods[moodIndex.current % 3];
+    moodIndex.current += 1;
+
+    const pool = mood === 'funny'
+      ? FUNNY_REACTIONS
+      : mood === 'sad'
+        ? SAD_REACTIONS
+        : LOVE_REACTIONS;
+
+    const rect = e.currentTarget.getBoundingClientRect();
+    const next: ClickReaction = {
+      id: Date.now() + Math.random(),
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
+      text: pool[Math.floor(Math.random() * pool.length)],
+      mood,
+      rot: Math.random() * 28 - 14,
+    };
+
+    setReactions(prev => [...prev, next].slice(-28));
+    window.setTimeout(() => {
+      setReactions(prev => prev.filter(r => r.id !== next.id));
+    }, 1100);
+  }, []);
+
+  return { reactions, spawnReaction };
 }

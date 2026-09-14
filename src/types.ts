@@ -23,11 +23,23 @@ export interface LoveBurstParticle {
   readonly rot: number;
 }
 
+export type ReactionMood = 'funny' | 'sad' | 'love';
+
 export interface ExtraCatHeart {
   readonly id: number;
   readonly left: number;
   readonly top: number;
   readonly delay: number;
+  readonly emoji: string;
+}
+
+export interface ClickReaction {
+  readonly id: number;
+  readonly x: number;
+  readonly y: number;
+  readonly text: string;
+  readonly mood: ReactionMood;
+  readonly rot: number;
 }
 
 export interface SmokeParticle {
